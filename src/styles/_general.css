@@ -1,0 +1,60 @@
+.flex {
+  display: flex;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.font-size-default {
+  font-size: 18px !important;
+}
+
+.font-weight-semi-bold {
+  font-weight: 600;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+body {
+  background-color: black;
+  color: greenyellow;
+  font-family: monospace;
+  font-size: 18px !important;
+  padding: 20px;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid greenyellow;
+  display: inline-block;
+  cursor: pointer;
+  color: greenyellow;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin: 2px;
+}
+
+button:hover {
+  background-color: greenyellow;
+  color: black;
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}

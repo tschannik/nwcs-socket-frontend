@@ -1,0 +1,133 @@
+.Select__control {
+  border-radius: 5px !important;
+  border-left-color: var(--color-gray-light) !important;
+  border-right-color: var(--color-gray-light) !important;
+  border-left-width: 1px !important;
+  border-right-width: 1px !important;
+  border-top: 1px solid var(--color-gray-light) !important;
+  border-bottom: 1px solid var(--color-gray-light) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 0 0 0 16px;
+  min-height: 48px !important;
+  cursor: text !important;
+}
+
+.Select__Container--invalid .Select__control {
+  border-color: var(--color-int-red--active) !important;
+}
+
+.Select__Container--invalid .Select__single-value {
+  color: var(--color-int-red) !important;
+}
+
+.Select__control.Select__control--menu-is-open {
+  border-radius: 5px 5px 0 0 !important;
+  box-shadow: 0 0 4px 0 rgba(51, 51, 51, 0.1) !important;
+}
+
+.Select__control.Select__control--is-focused {
+  border-color: var(--color-blue) !important;
+  box-shadow: none !important;
+}
+
+.Select__value-container {
+  padding: 0 !important;
+}
+
+.Select__placeholder {
+  color: var(--color-gray-60) !important;
+}
+
+.Select__menu {
+  border-radius: 0 0 5px 5px !important;
+  margin-top: -1px !important;
+  box-shadow: 0 0 4px 0 rgba(51, 51, 51, 0.1) !important;
+  border-width: 1px !important;
+  border-color: #d6d6d6 !important;
+  border-style: solid;
+  z-index: 900002 !important;
+}
+
+.Select__menu-list {
+  padding: 0 !important;
+}
+
+.Select__option {
+  padding: 10px 16px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  font-weight: 500;
+}
+
+.Select__option--highlight {
+  color: var(--color-blue);
+  background-color: transparent;
+}
+
+.Select__option--is-focused:not(.Select__option--is-selected),
+.Select__option--is-focused:not(.Select__option--is-selected):active {
+  background-color: var(--color-horizon) !important;
+}
+
+.Select__option--is-selected:not(.Select__option--is-focused),
+.Select__option--is-selected:not(.Select__option--is-focused):active {
+  background-color: var(--color-blue) !important;
+}
+
+.Select__option--is-selected.Select__option--is-focused,
+.Select__option--is-selected.Select__option--is-focused:active {
+  background-color: var(--color-int-blue--active) !important;
+}
+
+.Select__option--is-disabled {
+  cursor: not-allowed !important;
+}
+
+.Select__multi-value {
+  background-color: #fff !important;
+}
+
+.Select__indicator.Select__sdx-dropdown {
+  color: #1781e3 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+}
+
+.Select__control:hover .Select__dropdown-indicator.Select__sdx-dropdown,
+.Select__control.Select__control--is-focused .Select__dropdown-indicator.Select__sdx-dropdown {
+  background-color: #1781e3 !important;
+  color: #fff !important;
+  border-top-right-radius: 5px;
+}
+
+.Select__dropdown-indicator {
+  cursor: pointer !important;
+  font-size: 22px;
+}
+
+.Select__indicator-separator {
+  display: none !important;
+}
+
+.Select__clear-indicator {
+  cursor: pointer;
+}
+
+.Select__group:not(:last-child) {
+  padding-bottom: 0 !important;
+  border-bottom: 1px solid var(--color-gray-20);
+}
+
+.Select__group + .Select__group {
+  padding-top: 0 !important;
+}
+
+.Select__group-heading {
+  margin-bottom: 0 !important;
+}

@@ -1,0 +1,11 @@
+.icon {
+  font-size: 72px !important;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

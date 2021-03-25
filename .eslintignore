@@ -1,0 +1,6 @@
+node_modules
+reports
+dist
+.idea
+**/*.json
+**/*.md
