@@ -55,7 +55,7 @@ function Home() {
           <p>Sending Pings: {active ? 'Yes' : 'No'}</p>
           <p>Received Pongs: {pongs}</p>
         </div>
-        ){messages.length !== 0 && <p>Messages:</p>}
+        {messages.length !== 0 && <p>Messages:</p>}
         {messages.map((msg: any) => {
           return (
             <p key={msg.value} className={styles.clientNames}>
