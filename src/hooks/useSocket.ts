@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import io from 'socket.io-client';
-const socket = io('ws://147.87.135.244:4000', {
+const socket = io('ws://nwcs-backend.apollo.yzi.ch', {
   transports: ['websocket'],
 });
 // const socket = io('ws://localhost:4000', {
