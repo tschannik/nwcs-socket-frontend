@@ -12,14 +12,26 @@ function Home() {
   const [active, setActive] = useState(false);
 
   let interval: NodeJS.Timeout;
+  let iterations = 0;
 
   const startPing = () => {
     resetStats();
     setActive(true);
     interval = setInterval(() => {
-      sendPing();
+      iterationPing(interval);
     }, 1000);
     setIntervalId(interval);
+  };
+
+  const iterationPing = (intervalIdentifier: NodeJS.Timeout) => {
+    sendPing();
+    iterations = iterations + 1;
+    if (iterations >= 25) {
+      if (intervalIdentifier) {
+        setActive(false);
+        clearInterval(intervalIdentifier);
+      }
+    }
   };
 
   const stopInterval = () => {
