@@ -1,84 +1,59 @@
 /* eslint-disable arrow-parens */
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import SocketContext from '../../hooks/Socket.context';
-import styles from './Home.module.css';
+import usePing from '../../hooks/usePing';
 
 function Home() {
-  const { isConnected, sendPing, sendBroadcast, messages, clients, pongs, resetStats } =
-    useContext(SocketContext);
-
-  const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
+  const { ping } = usePing();
+  const [pings, setPings] = useState<number>(0);
+  const [pongs, setPongs] = useState<number>(0);
   const [active, setActive] = useState(false);
 
-  let interval: NodeJS.Timeout;
-  let iterations = 0;
+  const iterationCount = 20;
 
-  const startPing = () => {
+  const resetStats = () => {
+    setPings(0);
+    setPongs(0);
+  };
+
+  const startPing = async () => {
     resetStats();
     setActive(true);
-    interval = setInterval(() => {
-      iterationPing(interval);
-    }, 1000);
-    setIntervalId(interval);
   };
 
-  const iterationPing = (intervalIdentifier: NodeJS.Timeout) => {
-    sendPing();
-    iterations = iterations + 1;
-    if (iterations >= 25) {
-      if (intervalIdentifier) {
-        setActive(false);
-        clearInterval(intervalIdentifier);
+  useEffect(() => {
+    const fetchdata = async () => {
+      for (let i: number = 0; i <= iterationCount; i++) {
+        if (active) {
+          setPings(i);
+          await ping();
+          setPongs(i);
+          if (iterationCount === i) {
+            setActive(false);
+          }
+        }
       }
-    }
-  };
+    };
+    fetchdata();
+  }, [active]);
 
   const stopInterval = () => {
     setActive(false);
-    if (intervalId) {
-      clearInterval(intervalId);
-    }
   };
 
   return (
     <>
       <div>
-        <p>
-          Status:{' '}
-          <span className={styles.clientNames}>
-            Websocket {isConnected ? 'connected' : 'disconnected'}
-          </span>
-        </p>
-        <p>Connected clients: </p>
-        {clients.map((client: string) => {
-          return (
-            <p key={client} className={styles.clientNames}>
-              ::{client}::
-            </p>
-          );
-        })}
         <div>
           <button disabled={active} onClick={startPing}>
-            Send ping!
+            {!active ? 'Send ping!' : 'Runnging'}
           </button>
-          <button disabled={!active} onClick={stopInterval}>
-            Stop ping!
-          </button>
-          <button onClick={sendBroadcast}>Send Broadcast!</button>
           <br></br>
           <br></br>
           <p>Sending Pings: {active ? 'Yes' : 'No'}</p>
+          <p>Pings sent: {pings}</p>
           <p>Received Pongs: {pongs}</p>
         </div>
-        {messages.length !== 0 && <p>Messages:</p>}
-        {messages.map((msg: any) => {
-          return (
-            <p key={msg.value} className={styles.clientNames}>
-              {msg.value}
-            </p>
-          );
-        })}
       </div>
     </>
   );
