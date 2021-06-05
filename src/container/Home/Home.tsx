@@ -47,8 +47,12 @@ function Home() {
           );
         })}
         <div>
-          <button onClick={startPing}>Send ping!</button>
-          <button onClick={stopInterval}>Stop ping!</button>
+          <button disabled={active} onClick={startPing}>
+            Send ping!
+          </button>
+          <button disabled={!active} onClick={stopInterval}>
+            Stop ping!
+          </button>
           <button onClick={sendBroadcast}>Send Broadcast!</button>
           <br></br>
           <br></br>
