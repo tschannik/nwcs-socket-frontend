@@ -1,5 +1,6 @@
 import common from './config.default';
 import local from './config.local';
+import prod from './config.prod';
 
 const getConfig = () => {
   const stage = process.env.REACT_APP_STAGE;
@@ -7,7 +8,7 @@ const getConfig = () => {
     case 'local':
       return { ...common, ...local };
     default:
-      throw new Error('No stage specified');
+      return { ...common, ...prod };
   }
 };
 

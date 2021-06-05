@@ -2,7 +2,11 @@ import { sendPing } from '../services/ping.service';
 
 function usePing() {
   const ping = async () => {
-    return sendPing();
+    try {
+      return sendPing();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return {
