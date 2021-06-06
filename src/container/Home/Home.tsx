@@ -10,6 +10,7 @@ function Home() {
 
   const [active, setActive] = useState(false);
   const [iterations, setIterations] = useState(0);
+  const iterationCount = 25;
 
   const startPing = () => {
     resetStats();
@@ -18,12 +19,18 @@ function Home() {
   };
 
   useEffect(() => {
-    if (active && iterations < 10) {
+    if (active && iterations < iterationCount) {
       sendPing();
       setIterations(iterations + 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pongs, active]);
+
+  useEffect(() => {
+    if (iterations >= iterationCount) {
+      setActive(false);
+    }
+  }, [iterations]);
 
   const stopInterval = () => {
     setActive(false);
