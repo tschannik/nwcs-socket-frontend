@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import io from 'socket.io-client';
+import config from '../config';
 // const socket = io('ws://nwcs-backend.apollo.yzi.ch', {
 //   transports: ['websocket'],
 // });
-const socket = io('ws://localhost:4000', {
+const socket = io(`ws://${config.remoteUrl}`, {
   transports: ['websocket'],
 });
 
