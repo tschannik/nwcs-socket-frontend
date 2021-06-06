@@ -5,8 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './styles/_index.css';
 import * as serviceWorker from './serviceWorker';
-import SocketContext from './hooks/Socket.context';
-import useSocket from './hooks/useSocket';
 
 ReactDOM.render(
   <Router>

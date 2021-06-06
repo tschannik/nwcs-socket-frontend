@@ -1,5 +1,5 @@
 /* eslint-disable arrow-parens */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import SocketContext from '../../hooks/Socket.context';
 import styles from './Home.module.css';
@@ -8,37 +8,25 @@ function Home() {
   const { isConnected, sendPing, sendBroadcast, messages, clients, pongs, resetStats } =
     useContext(SocketContext);
 
-  const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
   const [active, setActive] = useState(false);
-
-  let interval: NodeJS.Timeout;
-  let iterations = 0;
+  const [iterations, setIterations] = useState(0);
 
   const startPing = () => {
     resetStats();
+    setIterations(0);
     setActive(true);
-    interval = setInterval(() => {
-      iterationPing(interval);
-    }, 1000);
-    setIntervalId(interval);
   };
 
-  const iterationPing = (intervalIdentifier: NodeJS.Timeout) => {
-    sendPing();
-    iterations = iterations + 1;
-    if (iterations >= 25) {
-      if (intervalIdentifier) {
-        setActive(false);
-        clearInterval(intervalIdentifier);
-      }
+  useEffect(() => {
+    if (active && iterations < 10) {
+      sendPing();
+      setIterations(iterations + 1);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pongs, active]);
 
   const stopInterval = () => {
     setActive(false);
-    if (intervalId) {
-      clearInterval(intervalId);
-    }
   };
 
   return (

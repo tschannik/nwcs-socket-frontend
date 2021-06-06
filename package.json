@@ -1,5 +1,5 @@
 {
-  "name": "iot-maps-frontend",
+  "name": "socket-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {

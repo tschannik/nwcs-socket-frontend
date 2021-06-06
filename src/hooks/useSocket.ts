@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import io from 'socket.io-client';
-const socket = io('ws://nwcs-backend.apollo.yzi.ch', {
-  transports: ['websocket'],
-});
-// const socket = io('ws://localhost:4000', {
+// const socket = io('ws://nwcs-backend.apollo.yzi.ch', {
 //   transports: ['websocket'],
 // });
+const socket = io('ws://localhost:4000', {
+  transports: ['websocket'],
+});
 
 function useSocket() {
   const [isConnected, setIsConnected] = useState<boolean>(socket.connected);
@@ -57,13 +57,13 @@ function useSocket() {
   }, [pings]);
 
   useEffect((): (() => void) => {
-    socket.on('testpong', (pl: any) => updatePongs());
-    return () => socket.removeListener('testpong');
+    socket.on('ServerPong', (pl: any) => updatePongs());
+    return () => socket.removeListener('ServerPong');
   }, [updatePongs]);
 
   const sendPing = () => {
     updatePings();
-    socket.emit('pang');
+    socket.emit('Pang');
   };
 
   const sendBroadcast = () => {
