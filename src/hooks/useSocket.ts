@@ -64,7 +64,7 @@ function useSocket() {
 
   const sendPing = () => {
     updatePings();
-    socket.emit('Pang');
+    socket.emit('Pang', 'Pang');
   };
 
   const sendBroadcast = () => {
